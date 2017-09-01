@@ -31,27 +31,6 @@
 				<li class="menu"><a href="adverts.php" target="_self">ADVERT PLACEMENT</a></li>
 				<li class="menu"><a href="contact_us.php" target="_self">CONTACT US</a></li>
 			</nav>
-		<!--	<div id="song_downloads">
-					<h5 id="artiste_choice">Download mp3:</h5>
-					<select id="select" name="Artistes">
-						<option value="mike_abdul.php">Mike Abdul</option>
-						<option> Glowreeyah Braimah</option>
-						<option> Nathaniel Bassey</option>
-						<option> Dresong</option>
-						<option> Midnight Crew</option>
-						<option> Elijah Oyelade</option>
-						<option> Mc'Abuluya Agbutun</option>
-					</select>
-				</div>
-					<div id="radio">
-					<h5 id="listen">Listen to 24hr GMH radio!</h5>
-					<audio controls="controls" autoplay="autoplay">
-						<source src="horse.ogg" type="audio/ogg"/>
-						<source src="horse.mp3" type="audio/mpeg"/>
-						Your browser does not support the audio element.
-					</audio> 
-				</div> -->
-			<!--this is the song of the week columnand comments section to be scrolled up and down through flash player-->
 			<div id="navigation">
 				<div id="nav_container" onmouseover="mOver(this)" onmouseout="mOut(this)">
 					<nav id="navigator" ><i class="fa fa-navicon"/></i></nav>
@@ -79,7 +58,12 @@
 						Type in your name as written on your song cover:
 						<input type="text" name="name" required="required" >
 						Type in the song title:
-						<input type="text" name="title" required="required" ></br>
+						<input type="text" name="title" required="required" >
+                        Type in your phone number (with country dialing code):
+                        <input type="number" name="phone" required="required" >
+                        Type in a a valid email address:
+                        <input type="email" name="email" required="required" >
+                        </br>
 						Select mp3 to upload:
 						<input type="file" name="mp3" required="required" >
 						Select album cover to upload:
@@ -94,6 +78,8 @@
 
                         $aNAME=$_POST["name"];
                         $sNAME=$_POST["title"];
+                        $phone=$_POST["phone"];
+                        $email=$_POST["email"];
                         $albumART = basename($_FILES ["cover"]["name"]);
                         $songNAME = basename($_FILES["mp3"]["name"]);
                         $target_dir = "promo_uploads/";
@@ -127,9 +113,9 @@
 								// send data to database
 
                                 require_once ('config.php');
-                                $query = "INSERT INTO music_promotion (artiste_id,artiste_name, song_title, album_art, mp3_name, song_link,upload_date) VALUES (NULL,?,?,?,?,?,NOW())";
+                                $query = "INSERT INTO music_promotion (artiste_id,artiste_name,phone, email, song_title, album_art, mp3_name, song_link,upload_date) VALUES (NULL,?,?,?,?,?,?,?,NOW())";
                                 $stmt = mysqli_prepare ($dbc,$query);
-                                mysqli_stmt_bind_param($stmt, "sssss",$aNAME,$sNAME,$img_dir,$songNAME,$target_file);
+                                mysqli_stmt_bind_param($stmt, "sssssss",$aNAME,$phone,$email,$sNAME,$img_dir,$songNAME,$target_file);
                                 mysqli_stmt_execute($stmt);
                                 mysqli_stmt_close($stmt);
                                 mysqli_close($dbc);
