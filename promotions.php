@@ -90,18 +90,19 @@
 					</form></br>
 
 					<?php
-                    $aNAME=$_POST["name"];
-                    $sNAME=$_POST["title"];
-                    $albumART=basename ($_FILES ["cover"]["name"]);
-                    $songNAME=basename($_FILES["mp3"]["name"]);
-					$target_dir = "promo_uploads/";
-					$target_file = $target_dir .$songNAME;
-					$uploadOk = 1;
-					$songFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-					$img_dir = "album art/".$albumART;
-					$img_dirType = pathinfo($img_dir,PATHINFO_EXTENSION);
+                    if (isset($_POST['submit'])){
 
-					if (isset($_POST['submit'])){	
+                        $aNAME=$_POST["name"];
+                        $sNAME=$_POST["title"];
+                        $albumART = basename($_FILES ["cover"]["name"]);
+                        $songNAME = basename($_FILES["mp3"]["name"]);
+                        $target_dir = "promo_uploads/";
+                        $target_file = $target_dir .$songNAME;
+                        $uploadOk = 1;
+                        $songFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+                        $img_dir = "album art/".$albumART;
+                        $img_dirType = pathinfo($img_dir,PATHINFO_EXTENSION);
+
 						// Check file size
 						if ($_FILES["mp3"]["size"] > 10000000) {
 							$uploadOk = 0;
@@ -121,7 +122,7 @@
 							echo  '*<span style="color:red;">Sorry, your file was not uploaded</span></br>';
 						// if everything is ok, try to upload file
 						} else {
-							if (move_uploaded_file($_FILES ["mp3"]["tmp_name"],$target_file) || move_uploaded_file($_FILES ["cover"]["tmp_name"],$img_dir)) {
+							if (move_uploaded_file($_FILES ["mp3"]["tmp_name"],$target_file) && move_uploaded_file($_FILES ["cover"]["tmp_name"],$img_dir)) {
                                 echo $sNAME." has been successfully uploaded.";
 								// send data to database
 

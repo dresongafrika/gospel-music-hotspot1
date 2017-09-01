@@ -77,62 +77,31 @@
 			<main>
 				<section id="new_songs"style="background-image: url(Images/solid.png);">
 					<h4>NEW RELEASE!(Scroll down for more downloads)</h4>
-					<div class="album_art">
+
+                    <?php require_once ('config.php');
+                    $query = "SELECT * FROM music_promotion";
+                    $stmt = mysqli_query ($dbc,$query);
+                    while ($row=mysqli_fetch_array($stmt)){
+                    echo	'<div class="album_art" >
+                             <figure class=" album">
+                                <img class="pix" src="'.$row["album_art"].'"alt="'.$row["song_title"].' by '.$row["artiste_name"].'" />
+                                <figcaption>'.$row["song_title"].' by '.$row["artiste_name"].'.</figcaption>
+                             </figure class=" album">
+                             <input type="submit" onclick="location.href="'.$row["song_link"].'/" value="Download/Play online"/>
+                             </div>';
+                    echo $row["song_link"];
+                    }
+                    mysqli_close($dbc);
+                    ?>
+
+                    <div class="album_art">
 						<figure class=" album">
 						<img class="pix" src="Images/monique.png" alt="Monique Power" />
 						<figcaption>Power flow by Monique.</figcaption>
 						</figure class=" album">
-						<input type="submit" onclick="location.href='Mp3/Steps remix.mp3'" value="Download" /><input type="submit" value="Play"/>
+						<input type="submit" onclick="location.href='promo_uploads/A Chukwu biko gozie.mp3'" value="Download" /><input type="submit" value="Play"/>
 					</div>
-					<div class="album_art">
-						<figure class=" album">
-						<img class="pix" src="Images/tye try.png" alt="Monique Power" />
-						<figcaption>Power flow by Monique.</figcaption>
-						</figure class=" album">
-						<input type="submit" onclick="location.href='Mp3/Steps remix.mp3'" value="Download" /><input type="submit" value="Play"/>
-					</div>
-					<div class="album_art">
-						<figure class=" album">
-						<img class="pix" src="Images/tye.jpg" alt="Monique Power" />
-						<figcaption>Power flow by Monique.</figcaption>
-						</figure class=" album">
-						<input type="submit" onclick="location.href='Mp3/Steps remix.mp3'" value="Download" /><input type="submit" value="Play"/>
-					</div>
-					<div class="album_art">
-						<figure class=" album">
-						<img class="pix" src="Images/monique.png" alt="Monique Power" />
-						<figcaption>Power flow by Monique.</figcaption>
-						</figure class=" album">
-						<input type="submit" onclick="location.href='Mp3/Steps remix.mp3'" value="Download" /><input type="submit" value="Play"/>
-					</div>
-					<div class="album_art">
-						<figure class=" album">
-						<img class="pix" src="Images/monique.png" alt="Monique Power" />
-						<figcaption>Power flow by Monique.</figcaption>
-						</figure class=" album">
-						<input type="submit" onclick="location.href='Mp3/Steps remix.mp3'" value="Download" /><input type="submit" value="Play"/>
-					</div>
-					<div class="album_art">
-						<figure class=" album">
-						<img class="pix" src="Images/monique.png" alt="Monique Power" />
-						<figcaption>Power flow by Monique.</figcaption>
-						</figure class=" album">
-						<input type="submit" onclick="location.href='Mp3/Steps remix.mp3'" value="Download" /><input type="submit" value="Play"/>
-					</div>
-					<div class="album_art">
-						<figure class=" album">
-						<img class="pix" src="Images/monique.png" alt="Monique Power" />
-						<figcaption>Power flow by Monique.</figcaption>
-						</figure class=" album">
-						<input type="submit" onclick="location.href='Mp3/Steps remix.mp3'" value="Download" /><input type="submit" value="Play"/>
-					</div>
-					<div class="album_art">
-						<figure class=" album">
-						<img class="pix" src="Images/monique.png" alt="Monique Power" />
-						<figcaption>Power flow by Monique.</figcaption>
-						</figure class=" album">
-						<input type="submit" onclick="location.href='Mp3/Steps remix.mp3'" value="Download" /><input type="submit" value="Play"/>
-					</div>
+
 				</section>
 				<section id="song_ipolowo" style="background-image: url(Images/solid.png);">
 					<img class="arowo_google" src="Images/monique.png" alt="Monique Power" />
