@@ -42,7 +42,7 @@
 						<li class="new_nav"><a href="contact_us.php" target="_self">CONTACT US</a></li>
 					</nav>
 				</div>
-				<section id="ipolowo"> 
+				<section id="ipolowo">
 					<img class="arowoyin" src="Arowoyin/Jellyfish.jpg" alt="ipolowo" />
 					<img class="arowoyin" src="Arowoyin/Desert.jpg" alt="ipolowo" />
 					<img class="arowoyin" src="Images/ekele.jpg" alt="ipolowo" />
@@ -62,23 +62,55 @@
                         <input type="number" name="phone" required="required" >
                         Type in a a valid email address:
                         <input type="email" name="email" required="required" >
-                        </br>
-						Select mp3 to upload:
+                        Tell us about yourself:
+                        <textarea name="bio" rows="4" cols="50" placeholder="Type it this way starting with your name.
+						Damilare Ademeso is minister of the gospel devoted to seeing the flames of worship across the nations e.t.c " ></textarea></br>
+                        Select mp3 to upload:
 						<input type="file" name="mp3" required="required" >
 						Select album cover to upload:
-						<input type="file" name="cover" required="required" ></br>
+						<input type="file" name="cover" required="required" >
 						Type in the lyrics:
-						<textarea name="lyrics" rows="4" cols="50" placeholder="optional" ></textarea></br>						
-						<input type="submit" value="Upload" name="submit">	
-					</form></br>
+						<textarea name="lyrics" rows="4" cols="50" placeholder="Type it this way.Chorus:
+                            Yahweh..........
+                            Verse one:
+                            Glorious God
+                            e.t.c"></textarea></br>
 
-					<?php
+                        <?php
+                        /** if (isset($_GET['pay'])){
+                            if ($_GET['pay']='yes'){    **/
+                                echo '<input type="submit" value="Upload" name="submit">';
+                         /**   }else{
+                                echo 'please pay to proceed';
+                            }
+                        }  **/
+                        ?>
+
+					</form></br>
+                    <form method="POST" action="https://voguepay.com/pay/">
+                        <input type="hidden" name="v_merchant_id" value="3828-0054426" />
+                        <input type="hidden" name="memo" value="payment for promotional song upload" />
+                        <input type="hidden" name="success_url" value="https://localhost/gospel-music-hotspot/promotions.php?pay=yes" />
+                        <input type="hidden" name="fail_url" value="https://localhost/gospel-music-hotspot/promotions.php?pay=no" />
+                        <input type="hidden" name="cur" value="NGN" />
+                        <input type="hidden" name="item_1" value="upload" />
+                        <input type="hidden" name="developer_code" value="599a05bc1e8d3" />
+                        <input type='hidden' name='total' value='10000' />
+                        <input type="hidden" name="description_1" value="" /><br />
+                        <input type="image" src="https://voguepay.com/images/buttons/make_payment_blue.png" alt="PAY WITH YOUR CREDIT/DEBIT CARD" />
+                    </form>
+                    <i class="fa fa-cc-discover" ></i><i class="fa fa-cc-visa"></i><i class="fa fa-cc-mastercard"></i><i class="fa fa-cc-paypal"></i></br>
+
+
+                    <?php
                     if (isset($_POST['submit'])){
 
                         $aNAME=$_POST["name"];
                         $sNAME=$_POST["title"];
                         $phone=$_POST["phone"];
                         $email=$_POST["email"];
+                        $lyrics=$_POST["lyrics"];
+                        $bio=$_POST["bio"];
                         $albumART = basename($_FILES ["cover"]["name"]);
                         $songNAME = basename($_FILES["mp3"]["name"]);
                         $target_dir = "promo_uploads/";
@@ -108,8 +140,22 @@
 						// if everything is ok, try to upload file
 						} else {
 							if (move_uploaded_file($_FILES ["mp3"]["tmp_name"],$target_file) && move_uploaded_file($_FILES ["cover"]["tmp_name"],$img_dir)) {
-                                echo $sNAME." has been successfully uploaded.";
-								// send data to database
+                                echo $sNAME." has been successfully uploaded.</br>";
+
+                                /** save lyrics and bio  **/
+
+                                $bio_target="biographies/";
+                                $lyric_target="lyrics/";
+                                $bioCONTENT = fopen("$aNAME.txt", "w");
+                                $lyricCONTENT = fopen("$sNAME by $aNAME.txt", "w");
+                                fwrite($bioCONTENT, $bio);
+                                fwrite($lyricCONTENT, $lyrics);
+                                fclose($bioCONTENT);
+                                fclose($lyricCONTENT);
+                                rename("$aNAME.txt","$bio_target$aNAME.txt");
+                                rename("$sNAME by $aNAME.txt","$lyric_target$sNAME by $aNAME.txt");
+
+                                /** send data to database  **/
 
                                 require_once ('config.php');
                                 $query = "INSERT INTO music_promotion (artiste_id,artiste_name,phone, email, song_title, album_art, mp3_name, song_link,upload_date) VALUES (NULL,?,?,?,?,?,?,?,NOW())";
@@ -117,6 +163,11 @@
                                 mysqli_stmt_bind_param($stmt, "sssssss",$aNAME,$phone,$email,$sNAME,$img_dir,$songNAME,$target_file);
                                 mysqli_stmt_execute($stmt);
                                 mysqli_stmt_close($stmt);
+
+                                $query = "SELECT * FROM music_promotion WHERE artiste_name='".$aNAME."'";
+                                $stmt = mysqli_query ($dbc,$query);
+                                $row=mysqli_fetch_array($stmt);
+                                echo 'Here is the link to your song: <a href=promo_uploads.php?redirect='.$row["artiste_name"].'>promo_uploads.php?redirect='.$row["artiste_name"].'</a> ';
                                 mysqli_close($dbc);
 
                             } else {
@@ -126,19 +177,7 @@
 					}
                     ?>
 
-                    <form method="POST" action="https://voguepay.com/pay/">
-                        <input type="hidden" name="v_merchant_id" value="3828-0054426" />
-                        <input type="hidden" name="memo" value="payment for promotional song upload" />
-                        <input type="hidden" name="cur" value="NGN" />
-                        <input type="hidden" name="item_1" value="upload" />
-                        <input type="hidden" name="developer_code" value="599a05bc1e8d3" />
-                        <input type="hidden" name="store_id" value="25" />
-                        <input type="hidden" name="price_1" value="10000" />
-                        <input type="hidden" name="description_1" value="" /><br />
-                        <input type="image" src="https://voguepay.com/images/buttons/make_payment_blue.png" alt="PAY WITH YOUR CREDIT/DEBIT CARD" />
-                    </form>
-                    <i class="fa fa-cc-discover" ></i><i class="fa fa-cc-visa"></i><i class="fa fa-cc-mastercard"></i><i class="fa fa-cc-paypal"></i>
-                    </br><a href="https://voguepay.com/register/3828-0054426" id="vogue_ref" target="_blank"><img src="https://voguepay.com/images/banners/a.png" width="160" height="600" alt="click here to learn how to accept credit/debit card payments with or without a website" /></a>
+                    </br><a href="https://voguepay.com/register/3828-0054426"><img src="https://voguepay.com/images/banners/f.png" width="600" height="60" /></a>
 
  				</section>
 				<section id="song_ipolowo" style="background-image: url(Images/solid.png);">
@@ -146,7 +185,7 @@
 					<article>
 						<blink><h4>Song of the week!(Scroll down to download)</h4></blink>
 						<h3 id="song_title">Steps by Dresong</h3>
-					
+
 						<p>My steps are ordered by the Lord and I will never be ashamed,<br />
 							He leads me every where I go and I will never be afraid.
 						</p>

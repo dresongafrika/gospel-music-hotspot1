@@ -25,7 +25,7 @@
 			</header>
 			<nav id="menu">
 				<li class="menu"><a href="index.php" target="_self">HOME</a></li>
-				
+
 				<li class="menu"><a href="promotions.php" target="_self">MUSIC PROMOTION</a></li>
 				<li class="menu"><a href="membership.php" target="_self">MEMBERSHIP</a></li>
 				<li class="menu"><a href="adverts.php" target="_self">ADVERT PLACEMENT</a></li>
@@ -42,7 +42,7 @@
 						<li class="new_nav"><a href="contact_us.php" target="_self">CONTACT US</a></li>
 					</nav>
 				</div>
-				<section id="ipolowo"> 
+				<section id="ipolowo">
 					<img class="arowoyin" src="Arowoyin/Jellyfish.jpg" alt="ipolowo" />
 					<img class="arowoyin" src="Arowoyin/Desert.jpg" alt="ipolowo" />
 					<img class="arowoyin" src="Images/ekele.jpg" alt="ipolowo" />
@@ -51,25 +51,35 @@
 				</section>
 			</div>
 			<main>
-				<section id="new_songs"style="background-image: url(Images/solid.png);">
-					<h2>Fill form below to contact us</h2>
-					<form action="MAILTO:ademesodamilare@gmail.com" method="post" enctype="text/plain">
-						Name:<br>
-						<input type="text" name="name" placeholder="your name"><br>
-						E-mail:<br>
-						<input type="text" name="mail" placeholder="your email"><br>
-						Comment:<br>
-						<input type="text" name="comment" placeholder="your comment" size="50"><br><br>
-						<input type="submit" value="Send">
-						<input type="reset" value="Reset">
-					</form>
-				</section>
+                <section id="new_songs"style="background-image: url(Images/solid.png);">
+                <h2>Just released a song? This is for you. With just $27.40 you can promote your song on our front page with a download link for your fans</h2>
+                <form method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars ($_SERVER["PHP_SELF"]);?>">
+                    Type in your name as written on your song cover:
+                    <input type="text" name="name" required="required" >
+                    Type in the song title:
+                    <input type="text" name="title" required="required" >
+                    Type in your phone number (with country dialing code):
+                    <input type="number" name="phone" required="required" >
+                    Type in a a valid email address:
+                    <input type="email" name="email" required="required" >
+                    </br>
+                    Select mp3 to upload:
+                    <input type="file" name="mp3" required="required" >
+                    Select album cover to upload:
+                    <input type="file" name="cover" required="required" ></br>
+                    Type in the lyrics:
+                    <textarea name="lyrics" rows="4" cols="50" placeholder="optional" ></textarea></br>
+                    <input type="submit" value="Upload" name="submit">
+                </form></br>
+                </section>
+
+
 				<section id="song_ipolowo" style="background-image: url(Images/solid.png);">
 					<img class="arowo_google" src="Images/monique.png" alt="Monique Power" />
 					<article>
 						<blink><h4>Song of the week!(Scroll down to download)</h4></blink>
 						<h3 id="song_title">Steps by Dresong</h3>
-					
+
 						<p>My steps are ordered by the Lord and I will never be ashamed,<br />
 							He leads me every where I go and I will never be afraid.
 						</p>

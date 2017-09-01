@@ -42,7 +42,7 @@
 						<li class="new_nav"><a href="contact_us.php" target="_self">CONTACT US</a></li>
 					</nav>
 				</div>
-				<section id="ipolowo"> 
+				<section id="ipolowo">
 					<img class="arowoyin" src="Arowoyin/Jellyfish.jpg" alt="ipolowo" />
 					<img class="arowoyin" src="Arowoyin/Desert.jpg" alt="ipolowo" />
 					<img class="arowoyin" src="Images/ekele.jpg" alt="ipolowo" />
@@ -77,7 +77,7 @@
 					<article>
 						<blink><h4>Song of the week!(Scroll down to download)</h4></blink>
 						<h3 id="song_title">Steps by Dresong</h3>
-					
+
 						<p>My steps are ordered by the Lord and I will never be ashamed,<br />
 							He leads me every where I go and I will never be afraid.
 						</p>

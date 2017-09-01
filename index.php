@@ -30,7 +30,23 @@
 				<li class="menu"><a href="adverts.php" target="_self">ADVERT PLACEMENT</a></li>
 				<li class="menu"><a href="contact_us.php" target="_self">CONTACT US</a></li>
 			</nav>
-			<div id="navigation">
+                <div>
+                    Click play to listen to 24hr Gospel Music Hotspot!
+                    <audio controls="controls">
+                                <?php
+                                require_once ('config.php');
+                                $query = "SELECT * FROM music_promotion";
+                                $stmt = mysqli_query ($dbc,$query);
+                                while ($row=mysqli_fetch_array($stmt)){
+                                    echo '<source src=" '. $row["song_link"] .' " type="audio/mp3">
+                                    Your browser does not support the audio element.';
+                                }
+                                mysqli_close($dbc);
+                                ?>
+                    </audio>
+                </div>
+
+            <div id="navigation">
 				<div id="nav_container" onmouseover="mOver(this)" onmouseout="mOut(this)">
 					<nav id="navigator" ><i class="fa fa-navicon"/></i></nav>
 					<nav id="menu_new_nav">
@@ -54,8 +70,8 @@
 				<section id="new_songs"style="background-image: url(Images/solid.png);">
 					<h4>NEW RELEASE!(Scroll down for more downloads)</h4>
 
-                    <?php require_once ('config.php');
-                    $query = "SELECT * FROM music_promotion";
+                    <?php require ('config.php');
+                    $query = "SELECT * FROM music_promotion ORDER BY artiste_id DESC ";
                     $stmt = mysqli_query ($dbc,$query);
                     while ($row=mysqli_fetch_array($stmt)){
                     echo	'<div class="album_art" >
@@ -63,19 +79,11 @@
                                 <img class="pix" src="'.$row["album_art"].'" alt="'.$row["song_title"].' by '.$row["artiste_name"].'" />
                                 <figcaption>'.$row["song_title"].' by '.$row["artiste_name"].'.</figcaption>
                              </figure class=" album">
-                             <a href="promo-uploads.php" target="_blank" id="download">Download/Play online</a>
+                             <a href="promo_uploads.php?redirect='.$row["artiste_name"].'" target="_blank" id="download">Download/Play online</a>
                              </div>';
                     }
                     mysqli_close($dbc);
                     ?>
-
-                    <div class="album_art">
-						<figure class=" album">
-						<img class="pix" src="Images/monique.png" alt="Monique Power" />
-						<figcaption>Power flow by Monique.</figcaption>
-						</figure class=" album">
-						<input type="submit" onclick="location.href='promo_uploads/A Chukwu biko gozie.mp3'" value="Download" /><input type="submit" value="Play"/>
-					</div>
 
 				</section>
 				<section id="song_ipolowo" style="background-image: url(Images/solid.png);">

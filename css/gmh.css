@@ -12,6 +12,11 @@
 #menu {
 	text-align:center;margin: 20px 0px 20px 0px;
 }
+.promo_cover{
+	display:block;width:230px;height:126px;border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 5px;
+}
 .menu {
 	display:inline-block;
 }
