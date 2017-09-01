@@ -25,8 +25,7 @@
 			</header>
 			<nav id="menu">
 				<li class="menu"><a href="index.php" target="_self">HOME</a></li>
-				<li class="menu"><a href="artistes.php" target="_self">ARTISTES</a></li>
-				<li class="menu"><a href="promotions.php" target="_self">MUSIC PROMOTION</a></li>
+                <li class="menu"><a href="promotions.php" target="_self">MUSIC PROMOTION</a></li>
 				<li class="menu"><a href="membership.php" target="_self">MEMBERSHIP</a></li>
 				<li class="menu"><a href="adverts.php" target="_self">ADVERT PLACEMENT</a></li>
 				<li class="menu"><a href="contact_us.php" target="_self">CONTACT US</a></li>
@@ -36,7 +35,6 @@
 					<nav id="navigator" ><i class="fa fa-navicon"/></i></nav>
 					<nav id="menu_new_nav">
 						<li class="new_nav"><a href="index.php" target="_self">HOME</a></li>
-						<li class="new_nav"><a href="artistes.php" target="_self">ARTISTES</a></li>
 						<li class="new_nav"><a href="promotions.php" target="_self">MUSIC PROMOTION</a></li>
 						<li class="new_nav"><a href="membership.php" target="_self">MEMBERSHIP</a></li>
 						<li class="new_nav"><a href="adverts.php" target="_self">ADVERT PLACEMENT</a></li>
@@ -65,7 +63,7 @@
                                 <img class="pix" src="'.$row["album_art"].'" alt="'.$row["song_title"].' by '.$row["artiste_name"].'" />
                                 <figcaption>'.$row["song_title"].' by '.$row["artiste_name"].'.</figcaption>
                              </figure class=" album">
-                             <a href="artistes.php" target="_blank" id="download">Download/Play online</a>
+                             <a href="promo-uploads.php" target="_blank" id="download">Download/Play online</a>
                              </div>';
                     }
                     mysqli_close($dbc);

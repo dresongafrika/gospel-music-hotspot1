@@ -25,40 +25,17 @@
 			</header>
 			<nav id="menu">
 				<li class="menu"><a href="index.php" target="_self">HOME</a></li>
-				<li class="menu"><a href="artistes.php" target="_self">ARTISTES</a></li>
 				<li class="menu"><a href="promotions.php" target="_self">MUSIC PROMOTION</a></li>
 				<li class="menu"><a href="membership.php" target="_self">MEMBERSHIP</a></li>
 				<li class="menu"><a href="adverts.php" target="_self">ADVERT PLACEMENT</a></li>
 				<li class="menu"><a href="contact_us.php" target="_self">CONTACT US</a></li>
 			</nav>
 
-		<!--	<div id="song_downloads">
-					<h5 id="artiste_choice">Download mp3:</h5>
-					<select id="select" name="Artistes">
-						<option value="mike_abdul.php">Mike Abdul</option>
-						<option> Glowreeyah Braimah</option>
-						<option> Nathaniel Bassey</option>
-						<option> Dresong</option>
-						<option> Midnight Crew</option>
-						<option> Elijah Oyelade</option>
-						<option> Mc'Abuluya Agbutun</option>
-					</select>
-				</div>
-					<div id="radio">
-					<h5 id="listen">Listen to 24hr GMH radio!</h5>
-					<audio controls="controls" autoplay="autoplay">
-						<source src="horse.ogg" type="audio/ogg"/>
-						<source src="horse.mp3" type="audio/mpeg"/>
-						Your browser does not support the audio element.
-					</audio>
-				</div> -->
-			<!--this is the song of the week columnand comments section to be scrolled up and down through flash player-->
 			<div id="navigation">
 				<div id="nav_container" onmouseover="mOver(this)" onmouseout="mOut(this)">
 					<nav id="navigator" ><i class="fa fa-navicon"/></i></nav>
 					<nav id="menu_new_nav">
 						<li class="new_nav"><a href="index.php" target="_self">HOME</a></li>
-						<li class="new_nav"><a href="artistes.php" target="_self">ARTISTES</a></li>
 						<li class="new_nav"><a href="promotions.php" target="_self">MUSIC PROMOTION</a></li>
 						<li class="new_nav"><a href="membership.php" target="_self">MEMBERSHIP</a></li>
 						<li class="new_nav"><a href="adverts.php" target="_self">ADVERT PLACEMENT</a></li>

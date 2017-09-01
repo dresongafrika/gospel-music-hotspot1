@@ -25,7 +25,6 @@
     </header>
     <nav id="menu">
         <li class="menu"><a href="index.php" target="_self">HOME</a></li>
-        <li class="menu"><a href="artistes.php" target="_self">ARTISTES</a></li>
         <li class="menu"><a href="promotions.php" target="_self">MUSIC PROMOTION</a></li>
         <li class="menu"><a href="membership.php" target="_self">MEMBERSHIP</a></li>
         <li class="menu"><a href="adverts.php" target="_self">ADVERT PLACEMENT</a></li>
@@ -57,7 +56,6 @@
             <nav id="navigator" ><i class="fa fa-navicon"/></i></nav>
             <nav id="menu_new_nav">
                 <li class="new_nav"><a href="index.php" target="_self">HOME</a></li>
-                <li class="new_nav"><a href="artistes.php" target="_self">ARTISTES</a></li>
                 <li class="new_nav"><a href="promotions.php" target="_self">MUSIC PROMOTION</a></li>
                 <li class="new_nav"><a href="membership.php" target="_self">MEMBERSHIP</a></li>
                 <li class="new_nav"><a href="adverts.php" target="_self">ADVERT PLACEMENT</a></li>
