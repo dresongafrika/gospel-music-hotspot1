@@ -101,7 +101,6 @@
                     </form>
                     <i class="fa fa-cc-discover" ></i><i class="fa fa-cc-visa"></i><i class="fa fa-cc-mastercard"></i><i class="fa fa-cc-paypal"></i></br>
 
-
                     <?php
                     if (isset($_POST['submit'])){
 

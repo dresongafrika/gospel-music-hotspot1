@@ -45,8 +45,7 @@
                                 ?>
                     </audio>
                 </div>
-
-            <div id="navigation">
+                <div id="navigation">
 				<div id="nav_container" onmouseover="mOver(this)" onmouseout="mOut(this)">
 					<nav id="navigator" ><i class="fa fa-navicon"/></i></nav>
 					<nav id="menu_new_nav">
@@ -57,13 +56,16 @@
 						<li class="new_nav"><a href="contact_us.php" target="_self">CONTACT US</a></li>
 					</nav>
 				</div>
-				<section id="ipolowo"> 
-					<img class="arowoyin" src="Arowoyin/Jellyfish.jpg" alt="ipolowo" />
-					<img class="arowoyin" src="Arowoyin/Desert.jpg" alt="ipolowo" />
-					<img class="arowoyin" src="Images/ekele.jpg" alt="ipolowo" />
-					<img class="arowoyin" src="Images/monique.png" alt="ipolowo" />
-					<img class="arowoyin" src="Images/tye.jpg" alt="ipolowo" />
-					<a href="" target=""><img class="arowoyin" src="Images/advertise with us.png" alt="ipolowo" /></a>
+				<section id="ipolowo">
+             <?php  require ('config.php');
+                    $query = "SELECT * FROM advertisement";
+                    $stmt = mysqli_query ($dbc,$query);
+                    while ($row=mysqli_fetch_array($stmt)){
+                        echo  '<a href="'.$row["prog_url"].'" target="_blank"><img class="arowoyin" src="'.$row["banner_link"].'" alt="'.$row["program_name"].'" /></a>';
+                    }
+                    mysqli_close($dbc);
+                    ?>
+					<a href="adverts.php" target="_blank"><img class="arowoyin" src="Images/advertise with us.png" alt="advertise with us" /></a>
 				</section>
 			</div>
 			<main>
@@ -84,7 +86,6 @@
                     }
                     mysqli_close($dbc);
                     ?>
-
 				</section>
 				<section id="song_ipolowo" style="background-image: url(Images/solid.png);">
 					<img class="arowo_google" src="Images/monique.png" alt="Monique Power" />
