@@ -14,10 +14,14 @@
         $aNAME=$row["artiste_name"];
         echo '<h2>'.$row["song_title"]. ' by ' .$row["artiste_name"].'</h2>';
         echo '<h3>BIO</h3>';
-        $read_bio = fopen("$bio_target$aNAME.txt", "r");
-        echo fread($read_bio,filesize("$bio_target$aNAME.txt"));
+        $cwd=getcwd();
+        $param_username = $row["artiste_name"];
+        $structure1=$cwd."/members/".$param_username;
+        $bio_title=$structure1."/".$param_username;
+        $read_bio = fopen("$bio_title.txt", "r");
+        echo fread($read_bio,filesize("$bio_title.txt"));
         fclose($read_bio);
-        echo '<img class="promo_cover" src="' . $row["album_art"] . '"alt="' . $row["song_title"] . ' by ' . $row["artiste_name"] . '" />';
+        echo '<img class="promo_cover" src="' . $row["album_art"] . '" alt="' . $row["song_title"] . '" by "' . $row["artiste_name"] . '" />';
         echo '<audio controls="controls" autoplay="autoplay">
                     <source src="' . $row["song_link"] . '" type="audio/mp3"/>
                     Your browser does not support the audio element.

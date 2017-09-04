@@ -108,10 +108,10 @@ require ("top.php");
                 $id=$row["artiste_id"];
 
 
-                $query = "INSERT INTO members_songs VALUES (?,?,?,?,?)";
+                $query = "INSERT INTO members_songs VALUES (?,?,?,?,?,?)";
                 $link='member_songs.php?mem_red_name='.$_SESSION['artiste_name'].'&mem_red_song='.$sNAME;
                 $stmt = mysqli_prepare ($dbc,$query);
-                mysqli_stmt_bind_param($stmt, "issss",$id,$_SESSION['artiste_name'],$sNAME,$album,$link);
+                mysqli_stmt_bind_param($stmt, "isssss",$id,$_SESSION['artiste_name'],$sNAME,$album,$img_dir,$link);
                 mysqli_stmt_execute($stmt);
                 mysqli_stmt_close($stmt);
 
