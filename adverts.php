@@ -1,17 +1,5 @@
-
-
-
-
-<nav id="menu">
-    <li class="menu"><a href="index.php" target="_self">HOME</a></li>
-    <li class="menu"><a href="promotions.php" target="_self">MUSIC PROMOTION</a></li>
-    <li class="menu"><a href="membership.php" target="_self">MEMBERSHIP</a></li>
-    <li class="menu"><a href="adverts.php" target="_self">ADVERT PLACEMENT</a></li>
-    <li class="menu"><a href="contact_us.php" target="_self">CONTACT US</a></li>
-</nav>
-
-
-
+<?php require ('top.php') ?>
+<section id="main">
 <form method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars ($_SERVER["PHP_SELF"]);?>">
     Type in your program name:
     <input type="text" name="title" required="required" >
@@ -25,9 +13,7 @@
     <input type="url" name="url" >
     <input type="submit" name="submit" >
 </form>
-
 <?php
-
 if(isset($_POST['submit'])){
     $dir='arowoyin/';
     $base = basename($_FILES ["banner"]["name"]);
@@ -51,9 +37,7 @@ if(isset($_POST['submit'])){
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     mysqli_close($dbc);
-
-
 }
-
-
 ?>
+</section>
+<?php require ('bottom.php') ?>

@@ -1,195 +1,109 @@
 
-#header {
-	text-align:center;
-	background-image: url(Images/banner.jpg);
+#container_head{
+ text-align: center;
+}
+#head{
+    display: inline-block;
+    text-align:center;
 }
 #logo {
-	width:120px;min-width:40px;
+    display: block;
+    margin: auto;
+    height: 40px;
 }
-#banner {
-	width:500px;min-width:200px;
+
+#website_name{
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
-#menu {
-	text-align:center;margin: 20px 0px 20px 0px;
+#website_motto{
+    margin-top: 0px;
 }
-.promo_cover{
-	display:block;width:230px;height:126px;border: 1px solid #ddd;
-	border-radius: 4px;
-	padding: 5px;
+#menu{
+    text-align:left;
+    display: inline-block;
+    vertical-align: top;
 }
-.menu {
-	display:inline-block;
+.menu{
+    list-style-type: none;
 }
-.menu a {
-	text-decoration:none;
-	font-weight:bold;
-	border-style: groove;
-	border-color: #39352D;
-	background-color: #39352D;
-	color:white;
-	border-radius:5px 5px 5px 5px;
-	border-width:5px;
-	
+#nav_container{
+    display: none;
 }
-.menu a:hover, {
-    background-color: purple;
-} 
-#navigation {
-	width:100%;height:110px;
-	position:relative;
-	top:0%;left:0%;
+#radio_container{
+    display: inline-block;
+    vertical-align: top;
 }
-#navigator {
-	display:none;position:absolute;
-	top:0%;left:0%;z-index:1;
+#radio_indicator{
+    display: block;
 }
-#menu_new_nav {
-	position:absolute;
-	left:4%;top:1%;	
-	z-index:1;background-color:pink;opacity:0.9;
-	display:none;
+#radio{
+    display: block;
 }
-.new_nav {
-	border:groove;list-style-type:none;
-	border-color:silver;font-size:small;
+#member_other_pages{
+    vertical-align: bottom;
 }
-.new_nav a {
-	text-decoration:none;
+#fav_search{
+    vertical-align: bottom;
 }
-.new_nav a:hover {
-	background-color:white;
+#main{
+    text-align: center;
+    display: inline-block;
+    width:78%;
+    height: 850px;
+    overflow-y: auto;
+    border: 1px solid darkgrey;
+    background-image: url(/images/solid.png);
 }
-.fa.fa-navicon {
-	font-size:150%;cursor:pointer;
-	}
-#ipolowo {
-	width:99.5%;
-	height: 100%;
-	border:groove;border-color:white;
-	position:absolute;top:0%;right:0%;
-	transition: width 0.5s;
-}
-.arowoyin {
-	width:100%;
-	max-width:1500px;
-	height:100%;
-}
-main {
-	width:100%;
-}
-main {
-	display:block;
-}
-#song_ipolowo {
-	margin:10px 0px 3px 0px;width:20%;display:inline-block;vertical-align:top;height:400px;overflow:auto;
-		border:groove;border-color:white;padding-bottom:5px;
-}
-article {
-	padding-left:5px;
-}
-.arowo_google {
-	width:100%;height:100px;
-}
-h4 {
-	margin:10px 0px 10px 0px;
-}
-#new_songs {
-	margin:10px 0px 3px 0px;width:77%;display:inline-block;height:400px;overflow:auto;text-align:center;float:right;
-	border:groove;border-color:white;padding-bottom:5px;
-}
-.pix{
-	display:block;width:230px;height:126px;border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 5px;
-}
+.wrapper{ width: 350px; padding: 20px; }
 .album_art {
-	display:inline-block;text-align:center;
+    text-align: center;
+    display: inline-block;
+    width:18%;
+    height: 270px;
+    vertical-align: top;
+    margin: 5px;
+    border: inset;
 }
 .album {
-	margin:0px;display:block;
+    width: 100%;
+    margin:auto;
 }
-#footer {
-	text-align:center;padding-top:5px;
+.pix {
+    width:100%;
+    height: 180px;
 }
-#social_icons {
-	margin-bottom:2px;margin-top:0px;
+#download_link{
+    border-radius: 5px;
+    border-top: inset;
+}
+a {text-decoration: none}
+#side{
+    text-align: center;
+    display: inline-block;
+    width:20%;
+    height: 850px;
+    overflow-y: auto;
+    vertical-align: top;
+}
+#ipolowo{
+    width:100%;
+    height: 200px;
+}
+.arowo_google{
+    width:100%;
+    height: 200px;
+}
+#footer{
+    text-align:center;
 }
 .social {
-	display:inline-block;
+    display: inline-block;
 }
-.social a {
-	font-size:20px;
-}
-i {
-	margin-right: 10px;color:#39352D;
-}
-#copyright {
-	margin-top:2px;
+.arowoyin{
+    width:100%;
+    height: 100%;
 }
 
-/**
-payment icons
-**/
-.fa-cc-visa, .fa-cc-discover, .fa-cc-mastercard, .fa-cc-paypal {
-	font-size:200%;color:blue;
-}
-@media screen and (max-width: 790px){
-	#menu {
-	display:none;
-	}
-	#navigator {
-		display:inline-block;
-	}
-	#ipolowo{
-		width:95%;
-	}
-	#new_songs {
-		width:60%;
-	}
-	#song_ipolowo{
-		width:36%;
-	}
-	#logo {
-		width:15%;height:50px;
-	}
-	#banner {
-		width:70%;height:50px;
-	}
-}
-@media screen and (max-width: 375px) {
-	
-	main {
-		width:100%;
-	}
-	#logo {
-		width:15%;height:50px;
-	}
-	#banner {
-		width:70%;height:50px;
-	}
-	#song_ipolowo{
-		width:100%;display:block;float:none;padding-left:0px;
-	}
-	#new_songs{
-				width:100%;display:block;float:none;
-	}
-	.pix {
-		width:100%;
-	}
-}
 
-@media screen and (max-width: 278px) {
-	#ipolowo {
-		
-	width:60%;
-	}
-	header {
-	margin-bottom:8px;
-	}
-	#banner{
-		width:50px;
-	}
-	#logo {
-		width:10px;
-	}
-}
+

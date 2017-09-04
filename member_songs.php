@@ -1,14 +1,15 @@
 <?php require ('top.php') ?>
 <section id="main">
-<?php
-    if (isset ($_GET['redirect'])){
-        $redirect = $_GET['redirect'];
+    <?php
+    if (isset ($_GET['mem_red_name']) && isset($_GET['mem_red_song'])){
+        $artiste_name = $_GET['mem_red_name'];
+        $song_title = $_GET['mem_red_song'];
         require('db/config.php');
-        $query = "SELECT * FROM music_promotion WHERE artiste_name='".$redirect."'";
+        $query = 'SELECT * FROM members_songs WHERE artiste_name='.$artiste_name.'AND song_title='.$song_title;
         $stmt = mysqli_query ($dbc,$query);
         $row=mysqli_fetch_array($stmt);
-        $bio_target="promotions/biographies/";
-        $lyric_target="promotions/lyrics/";
+        $bio_target='members/'.$artiste_name.'/biographies/';
+        $lyric_target='members/'.$artiste_name.'/lyrics/';
         $sNAME=$row["song_title"];
         $aNAME=$row["artiste_name"];
         echo '<h2>'.$row["song_title"]. ' by ' .$row["artiste_name"].'</h2>';
