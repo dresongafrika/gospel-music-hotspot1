@@ -15,6 +15,7 @@
     }
     ?>
 </section>
+
 <?php require ('bottom.php') ?>
 
 

@@ -1,0 +1,16 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: DRESONG
+ * Date: 8/26/2017
+ * Time: 2:17 PM
+ */
+
+$host = "localhost";
+$user = "root";
+$pass = "people@8624";
+$db_name = "gospel_music_hotspot";
+
+$dbc = mysqli_connect($host,$user,$pass,$db_name)
+    or die("Error in connection: " .mysqli_connect_error());
+?>

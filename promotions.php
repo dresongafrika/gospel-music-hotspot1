@@ -86,10 +86,10 @@
                                         /** save lyrics  **/
 
                                         $lyric_target="promotions/lyrics/";
-                                        $lyricCONTENT = fopen("$sNAME by $aNAME.txt", "w");
+                                        $lyricCONTENT = fopen($sNAME ."by". $aNAME.".txt", "w");
                                         fwrite($lyricCONTENT, $lyrics);
                                         fclose($lyricCONTENT);
-                                        rename("$sNAME by $aNAME.txt","$lyric_target$sNAME by $aNAME.txt");
+                                        rename($sNAME." by". $aNAME.".txt","$lyric_target$sNAME by $aNAME.txt");
 
                                         /** send data to database  **/
 
@@ -147,12 +147,13 @@
             }  **/
 
             echo'
-                            </form></br>
-                            <form method="POST" action="https://voguepay.com/pay/">
+                            </form></br>';
+                            $cwd= getcwd();
+             echo      '        <form method="POST" action="https://voguepay.com/pay/">
                                 <input type="hidden" name="v_merchant_id" value="3828-0054426" />
                                 <input type="hidden" name="memo" value="payment for promotional song upload" />
-                                <input type="hidden" name="success_url" value="https://localhost/gospel-music-hotspot/promotions.php?pay=yes" />
-                                <input type="hidden" name="fail_url" value="https://localhost/gospel-music-hotspot/promotions.php?pay=no" />
+                                <input type="hidden" name="success_url" value="'.$cwd.'"/promotions.php?pay=yes" />
+                                <input type="hidden" name="fail_url" value="'.$cwd.'"/promotions.php?pay=no" />
                                 <input type="hidden" name="cur" value="NGN" />
                                 <input type="hidden" name="item_1" value="upload" />
                                 <input type="hidden" name="developer_code" value="599a05bc1e8d3" />

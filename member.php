@@ -94,11 +94,11 @@ require ("top.php");
 
                 /** save lyrics **/
 
-                $lyric_target='members/'.$_SESSION['artiste_name'].'/lyrics/';
+                $message_target='members/'.$_SESSION['artiste_name'].'/lyrics/';
                 $lyricCONTENT = fopen("$sNAME by $aNAME.txt", "w");
                 fwrite($lyricCONTENT, $lyrics);
                 fclose($lyricCONTENT);
-                rename("$sNAME by $aNAME.txt","$lyric_target$sNAME by $aNAME.txt");
+                rename("$sNAME by $aNAME.txt","$message_target$sNAME by $aNAME.txt");
                 /** send data to database  **/
 
                 $query = "SELECT artiste_id FROM members WHERE artiste_name='".$_SESSION['artiste_name'];
@@ -129,9 +129,22 @@ require ("top.php");
     <?php  echo '<a href="index.php?member_promo=" '.$_SESSION["artiste_name"].' "><h6>Would you like to advertise your worship meeting at a discount, If Yes. Click here</h6></a>' ?>
 
     <h4>Your fans have something to tell you!</h4>
-    Display. txt of Each Fan comment.
+    <?php
+    $query = "SELECT message_link FROM fan_messsages WHERE artiste_name=".$_SESSION['artiste_name'];
+    $stmt = mysqli_query ($dbc,$query);
+    while ($row=mysqli_fetch_array($stmt)) {
+            echo '<div class="fan_messages">';
+            $read_message=fopen($row["message_link"].'.txt',"r");
+            echo fread($read_message,filesize($row["message_link"].'.txt'));
+            fclose($read_message);
+            echo '</br>';
+        }
+    ?>
 
 
+
+
+    <?php echo '<a href="member_edit.php?name='.$_SESSION["artiste_name"].'><h6>Click here to edit your profile</h6></a>';?>
     <p><a href="member_logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
     </br><a href="https://voguepay.com/register/3828-0054426"><img src="https://voguepay.com/images/banners/f.png" width="600" height="60" /></a>
 </section>

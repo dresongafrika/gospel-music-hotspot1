@@ -62,6 +62,12 @@
     width:40%;
     height:100px;
 }
+#bio_cont{
+    border: solid;
+}
+#lyric_cont{
+    border: solid;
+}
 .wrapper{ width: 350px; padding: 20px; }
 .album_art {
     text-align: center;
