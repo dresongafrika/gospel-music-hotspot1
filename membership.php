@@ -26,19 +26,18 @@
     <?php
 
     // Include config file
-    require 'db/config.php';
 
     // Define variables and initialize with empty values
-    $bio=$uName = $fName=$lName=$pWord = $confirm_password = "";
-    $fNAME=$_POST["first_name"]="";
-    $lNAME=$_POST["last_name"]="";
-    $phone=$_POST["phone"]="";
-    $email=$_POST["email"]="";
-    $add=$_POST["address"]="";
-    $fb=$_POST["facebook"]="";
-    $twitter=$_POST["twitter"]="";
-    $bio_err=$username_err = $password_err = $confirm_password_err = $fname_err=$lname_err=$phone_err=$email_err=$address_err=$fb_err=$twitter_err="";
-
+    $dob=$phone=$email=$add=$bio=$uName = $fName=$lName=$pWord = $confirm_password = "";
+    $dob_err=$bio_err=$username_err = $password_err = $confirm_password_err = $fname_err=$lname_err=$phone_err=$email_err=$address_err=$fb_err=$twitter_err="";
+        $fNAME=$_POST["first_name"]="";
+        $lNAME=$_POST["last_name"]="";
+        $dob=$_POST["dob"]="";
+        $phone=$_POST["phone"]="";
+        $email=$_POST["email"]="";
+        $add=$_POST["address"]="";
+        $fb=$_POST["facebook"]="";
+        $twitter=$_POST["twitter"]="";
     // Processing form data when form is submitted
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -98,7 +97,7 @@
         if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
 
             // Prepare an insert statement
-            $sql = "INSERT INTO members (artiste_name, password) VALUES (?, ?)";
+            $sql = "INSERT INTO members VALUES (NULL,?,?,?,?,?,?,?,?,NOW())";
 
             if($stmt = mysqli_prepare($dbc, $sql)){
 
@@ -107,7 +106,7 @@
                 $param_password = password_hash($pWord, PASSWORD_DEFAULT); // Creates a password hash
 
                 // Bind variables to the prepared statement as parameters
-                mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+                mysqli_stmt_bind_param($stmt, "ssssssss", $fName,$lName,$dob,$phone,$email,$add,$param_username, $param_password);
 
                 $cwd=getcwd();
                 $structure1=$cwd."/members/".$param_username;
@@ -141,7 +140,6 @@
         }
 
         // Close connection
-        mysqli_close($dbc);
     }
     ?>
 
@@ -173,7 +171,12 @@
                 <input type="text" name="last_name" class="form-control" value"<?php echo $lName; ?>">
                 <span class="help-block"><?php echo $lname_err; ?></span>
             </div>
-            <div class="form-group <?php echo (!empty($lname_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($dob_err)) ? 'has-error' : ''; ?>">
+                <label>Date of Birth:<sup>*</sup></label>
+                <input type="date" name="dob" class="form-control" value"<?php echo $dob; ?>">
+                <span class="help-block"><?php echo $dob_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($bio_err)) ? 'has-error' : ''; ?>">
                 <label>Tell us about yourself:<sup>*</sup></label>
                 <textarea class="form-control" name="bio" rows="4" cols="50" placeholder="Type it this way starting with your name.
                 Damilare Ademeso is minister of the gospel devoted to seeing the flames of worship across the nations e.t.c " value"<?php echo $bio; ?>"></textarea></br>

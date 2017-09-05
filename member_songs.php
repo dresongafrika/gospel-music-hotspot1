@@ -21,7 +21,7 @@
         $read_bio = fopen("$bio_title.txt", "r");
         echo fread($read_bio,filesize("$bio_title.txt"));
         fclose($read_bio);
-        echo '<img class="promo_cover" src="' . $row["album_art"] . '" alt="' . $row["song_title"] . '" by "' . $row["artiste_name"] . '" />';
+        echo '<img class="promo_cover" src="' . $row["album_art"] . '" alt="' . $row["song_title"] . '" by "' . $row["artiste_name"] . '" /></img>';
         echo '<audio controls="controls" autoplay="autoplay">
                     <source src="' . $row["song_link"] . '" type="audio/mp3"/>
                     Your browser does not support the audio element.

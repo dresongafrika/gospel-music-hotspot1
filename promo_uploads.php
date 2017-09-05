@@ -3,7 +3,6 @@
 <?php
     if (isset ($_GET['redirect'])){
         $redirect = $_GET['redirect'];
-        require('db/config.php');
         $query = "SELECT * FROM music_promotion WHERE artiste_name='".$redirect."'";
         $stmt = mysqli_query ($dbc,$query);
         $row=mysqli_fetch_array($stmt);
@@ -16,7 +15,7 @@
         $read_bio = fopen("$bio_target$aNAME.txt", "r");
         echo fread($read_bio,filesize("$bio_target$aNAME.txt"));
         fclose($read_bio);
-        echo '<img class="promo_cover" src="' . $row["album_art"] . '"alt="' . $row["song_title"] . ' by ' . $row["artiste_name"] . '" />';
+        echo '<img class="promo_cover" src="' . $row["album_art"] . '"alt="' . $row["song_title"] . ' by ' . $row["artiste_name"] . '" /></img>';
         echo '<audio controls="controls" autoplay="autoplay">
                     <source src="' . $row["song_link"] . '" type="audio/mp3"/>
                     Your browser does not support the audio element.
@@ -25,7 +24,6 @@
         $read_lyrics = fopen("$lyric_target$sNAME by $aNAME.txt", "r");
         echo fread($read_lyrics,filesize("$lyric_target$sNAME by $aNAME.txt"));
         fclose($read_lyrics);
-        mysqli_close($dbc);
     }
     ?>
 </section>

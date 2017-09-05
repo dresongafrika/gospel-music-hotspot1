@@ -43,17 +43,24 @@
 #member_other_pages{
     vertical-align: bottom;
 }
+#member_other_pages{
+    vertical-align: bottom;
+}
 #fav_search{
     vertical-align: bottom;
+    display: inline-block;
 }
 #main{
     text-align: center;
     display: inline-block;
     width:78%;
-    height: 850px;
     overflow-y: auto;
     border: 1px solid darkgrey;
     background-image: url(/images/solid.png);
+}
+.promo_cover{
+    width:40%;
+    height:100px;
 }
 .wrapper{ width: 350px; padding: 20px; }
 .album_art {

@@ -6,7 +6,6 @@
             /**  This is for the public    **/
 
             $member_promo=$_GET["member_promo"];
-            require ('db/config.php');
             $query = "SELECT * FROM members";
             $stmt = mysqli_query ($dbc,$query);
             while ($row=mysqli_fetch_array($stmt)){
@@ -94,7 +93,6 @@
 
                                         /** send data to database  **/
 
-                                        require ("db/config.php");
                                         $query = "INSERT INTO music_promotion (artiste_id,artiste_name,phone, email, song_title, album_art, mp3_name, song_link,upload_date) VALUES (NULL,?,?,?,?,?,?,?,NOW())";
                                         $stmt = mysqli_prepare ($dbc,$query);
                                         mysqli_stmt_bind_param($stmt, "sssssss",$aNAME,$phone,$email,$sNAME,$img_dir,$songNAME,$target_file);
@@ -105,7 +103,6 @@
                                         $stmt = mysqli_query ($dbc,$query);
                                         $row=mysqli_fetch_array($stmt);
                                         echo 'Here is the link to your song: <a href=promo_uploads.php?redirect="'.$row["artiste_name"].'">promo_uploads.php?redirect="'.$row["artiste_name"].'"</a> ';
-                                        mysqli_close($dbc);
 
                                     } else {
                                         echo '<span style="color:red;">*Sorry, there was an error uploading your file.</span>';
@@ -219,7 +216,6 @@
 
                         /** send data to database  **/
 
-                        require ("db/config.php");
                         $query = "INSERT INTO music_promotion (artiste_id,artiste_name,phone, email, song_title, album_art, mp3_name, song_link,upload_date) VALUES (NULL,?,?,?,?,?,?,?,NOW())";
                         $stmt = mysqli_prepare ($dbc,$query);
                         mysqli_stmt_bind_param($stmt, "sssssss",$aNAME,$phone,$email,$sNAME,$img_dir,$songNAME,$target_file);
@@ -230,7 +226,6 @@
                         $stmt = mysqli_query ($dbc,$query);
                         $row=mysqli_fetch_array($stmt);
                         echo 'Here is the link to your song: <a href=promo_uploads.php?redirect="'.$row["artiste_name"].'">promo_uploads.php?redirect="'.$row["artiste_name"].'"</a> ';
-                        mysqli_close($dbc);
 
                     } else {
                         echo '<span style="color:red;">*Sorry, there was an error uploading your file.</span>';

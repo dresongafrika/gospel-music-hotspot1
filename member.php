@@ -101,7 +101,6 @@ require ("top.php");
                 rename("$sNAME by $aNAME.txt","$lyric_target$sNAME by $aNAME.txt");
                 /** send data to database  **/
 
-                require ('db/config.php');
                 $query = "SELECT artiste_id FROM members WHERE artiste_name='".$_SESSION['artiste_name'];
                 $stmt = mysqli_query ($dbc,$query);
                 $row=mysqli_fetch_array($stmt);
@@ -119,7 +118,6 @@ require ("top.php");
                 $stmt = mysqli_query ($dbc,$query);
                 $row=mysqli_fetch_array($stmt);
                 echo 'Here is the link to your song: <a href="member_songs.php?mem_red_name='.$row["artiste_name"].'&mem_red_song='.$sNAME.'">member_songs.php?mem_red_name='.$row["artiste_name"].'&mem_red_song='.$sNAME.'</a> ';
-                mysqli_close($dbc);
 
             } else {
                 echo '<span style="color:red;">*Sorry, there was an error uploading your file.</span>';
