@@ -20,17 +20,24 @@ if(isset($_GET['submit'])){
     $number=$_GET["number"];
     $email=$_GET["mail"];
     $subject=$_GET["subject"];
+    $date=date("Y-m-d H:i:s");
     $message=$_GET["message"];
-    $message_target="messages/";
+    $message_target="messages/".$subject."from".$name.".txt";
     $message_content = fopen("$subject from $name.txt", "w");
     $new_subject="$subject from $name.txt";
     fwrite($message_content, $subject.PHP_EOL);
     fwrite($message_content, $name.PHP_EOL);
     fwrite($message_content, $number.PHP_EOL);
     fwrite($message_content, $email.PHP_EOL);
+    fwrite($message_content, $date.PHP_EOL);
     fwrite($message_content, $message.PHP_EOL);
     fclose($message_content);
-    rename("$subject from $name.txt","$message_target$new_subject");
+    rename("$subject from $name.txt",$message_target);
+    $query='INSERT INTO contact_us VALUES (NOW(),'.$name.',?,';
+    $stmt = mysqli_prepare ($dbc,$query);
+    mysqli_stmt_bind_param($stmt, "s",$message_target);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
     echo '<h4>Thank you for contacting us. We will get back to you if need be</h4>';
 }
 ?>

@@ -130,14 +130,14 @@ require ("top.php");
 
     <h4>Your fans have something to tell you!</h4>
     <?php
-    $query = "SELECT message_link FROM fan_messsages WHERE artiste_name=".$_SESSION['artiste_name'];
+    $query = "SELECT message_link FROM fan_messsages WHERE artiste_name=".$_SESSION['artiste_name']."ORDER BY message_date ASC" ;
     $stmt = mysqli_query ($dbc,$query);
     while ($row=mysqli_fetch_array($stmt)) {
             echo '<div class="fan_messages">';
             $read_message=fopen($row["message_link"].'.txt',"r");
             echo fread($read_message,filesize($row["message_link"].'.txt'));
             fclose($read_message);
-            echo '</br>';
+            echo '</div>';
         }
     ?>
 
