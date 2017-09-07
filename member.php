@@ -5,7 +5,7 @@ require ("top.php");
     <?php
     // Initialize the session
     session_start();
-
+    //If the redirection is coming from member edit.
     // If session variable is not set it will redirect to login page
     if(!isset($_SESSION['artiste_name']) || empty($_SESSION['artiste_name'])){
         header("location: member_login.php");
@@ -59,7 +59,7 @@ require ("top.php");
         $param_username=$_SESSION['artiste_name'];
         $aNAME=$_POST["name"];
         $sNAME=$_POST["title"];
-        $album=""=$_POST["album"];
+        $album=$_POST["album"];
         $lyrics=$_POST["lyrics"];
         $albumART = basename($_FILES ["cover"]["name"]);
         $songNAME = basename($_FILES["mp3"]["name"]);

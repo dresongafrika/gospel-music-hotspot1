@@ -44,6 +44,6 @@
 <?php ob_end_flush();
         mysqli_close($dbc);
 ?>
-<a href="admin.php">ADMIN</a>
+<a href="admin_login.php">ADMIN</a>
 </body>
 </html>

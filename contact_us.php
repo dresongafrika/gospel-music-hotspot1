@@ -5,9 +5,9 @@
     Name:<br>
     <input type="text" name="name" placeholder="your name" required="required"><br>
     Phone number:<br>
-    <input type="number" name="number" placeholder="your number preceded by country code" required="required"><br>
+    <input type="tel" name="number" placeholder="your number preceded by country code" required="required"><br>
     E-mail:<br>
-    <input type="text" name="mail" placeholder="youremail@website.com" required="required"><br>
+    <input type="email" name="mail" placeholder="youremail@website.com" required="required"><br>
     Subject:<br>
     <input type="text" name="subject" placeholder="your name" required="required"><br>
     Your message:<br>
@@ -22,7 +22,7 @@ if(isset($_GET['submit'])){
     $subject=$_GET["subject"];
     $date=date("Y-m-d H:i:s");
     $message=$_GET["message"];
-    $message_target="messages/".$subject."from".$name.".txt";
+    $message_target="messages/".$subject." from ".$name.".txt";
     $message_content = fopen("$subject from $name.txt", "w");
     $new_subject="$subject from $name.txt";
     fwrite($message_content, $subject.PHP_EOL);
@@ -33,12 +33,13 @@ if(isset($_GET['submit'])){
     fwrite($message_content, $message.PHP_EOL);
     fclose($message_content);
     rename("$subject from $name.txt",$message_target);
-    $query='INSERT INTO contact_us VALUES (NOW(),'.$name.',?,';
+    $query='INSERT INTO contact_us (message_date,guest_name,message_link) VALUES (NOW(),?,?)';
+    echo $name;
     $stmt = mysqli_prepare ($dbc,$query);
-    mysqli_stmt_bind_param($stmt, "s",$message_target);
+    mysqli_stmt_bind_param($stmt, "ss",$name,$message_target);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    echo '<h4>Thank you for contacting us. We will get back to you if need be</h4>';
+    echo '<h4>'.ucfirst($name).',thank you for contacting us. We will get back to you if need be</h4>';
 }
 ?>
 </section>

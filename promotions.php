@@ -201,6 +201,7 @@
                 } else {
                     if (move_uploaded_file($_FILES ["mp3"]["tmp_name"],$target_file) && move_uploaded_file($_FILES ["cover"]["tmp_name"],$img_dir)) {
                         echo $sNAME.' has been successfully uploaded.</br>';
+;
 
                         /** save lyrics and bio  **/
 
@@ -225,8 +226,9 @@
 
                         $query = "SELECT * FROM music_promotion WHERE artiste_name=".$aNAME;
                         $stmt = mysqli_query ($dbc,$query);
+
                         $row=mysqli_fetch_array($stmt);
-                        echo 'Here is the link to your song: <a href=promo_uploads.php?redirect="'.$row["artiste_name"].'">promo_uploads.php?redirect="'.$row["artiste_name"].'"</a> ';
+                        echo 'Here is the link to your song: <a href="promo_uploads.php?redirect="'.$row["artiste_name"].'">promo_uploads.php?redirect="'.$row["artiste_name"].'"</a> ';
 
                     } else {
                         echo '<span style="color:red;">*Sorry, there was an error uploading your file.</span>';

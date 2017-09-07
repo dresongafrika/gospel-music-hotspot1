@@ -68,18 +68,15 @@
         <label >Check out your favourite artiste.</label>
             <select >
             <?php
-            $query = "SELECT artiste_name FROM members";
+            $query = "SELECT artiste_name FROM members ORDER BY artiste_name ASC ";
             $stmt = mysqli_query ($dbc,$query);
             while ($row=mysqli_fetch_array($stmt)){
                     echo '<option type="multiple" name="artiste_select">'.$row["artiste_name"].'</option>';
                 }
-            ?>
+                ?>
             </select>
-            <input type="submit" name="submit" value="submit"/>
+
+    <input type="submit" name="submit" value="submit"/>
 </form>
-<?php
-if(isset($_POST["submit"])){
-    header('location: member_page.php?name='.$_POST["artiste_name"]);
-}
-?>
+
 
