@@ -38,12 +38,13 @@
         <li class="social"> <a href=""><i class="fa fa-google-plus-square"></i> </a></li>
         <li class="social"> <a href=""><i class="fa fa-whatsapp"></i> </a></li>
     </ul>
-    <p id="copyright">&copy 2017 Website designed @ The Cocoon Network (+2348182818327,+2348136776626)</p>
+    <p id="copyright">&copy 2017 Website designed @ Africa Spider Network (+2348182818327,+2348136776626)</p>
 </footer>
 <script type="text/javascript" src="js/gmh.js"></script>
-<?php ob_end_flush();
-        mysqli_close($dbc);
-?>
 <a href="admin_login.php">ADMIN</a>
+<?php
+        mysqli_close($dbc);
+        ob_end_flush();
+?>
 </body>
 </html>

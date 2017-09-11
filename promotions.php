@@ -224,12 +224,7 @@
                         mysqli_stmt_execute($stmt);
                         mysqli_stmt_close($stmt);
 
-                        $query = "SELECT * FROM music_promotion WHERE artiste_name=".$aNAME;
-                        $stmt = mysqli_query ($dbc,$query);
-
-                        $row=mysqli_fetch_array($stmt);
-                        echo 'Here is the link to your song: <a href="promo_uploads.php?redirect="'.$row["artiste_name"].'">promo_uploads.php?redirect="'.$row["artiste_name"].'"</a> ';
-
+                                echo 'Here is the link to your song: <a href="promo_uploads.php?redirect=" ' . $aNAME . ' ">promo_uploads.php?redirect="' . $aNAME . '"</a> ';
                     } else {
                         echo '<span style="color:red;">*Sorry, there was an error uploading your file.</span>';
                     }

@@ -24,7 +24,7 @@
 
 <?php
             // Define variables and initialize with empty values
-            $param_password=$uName=$pWord=$confirm_password="";
+          $username_hash=$param_password=$uName=$pWord=$confirm_password="";
           $password_err=$confirm_password_err= $username_err ="";
             // Processing form data when form is submitted
             if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -35,16 +35,15 @@
                 } else{
                     // Prepare a select statement
 
-                    $query = "SELECT artiste_name FROM members";
-                    $stmt = mysqli_query ($dbc,$query);
-                    while ($row=mysqli_fetch_array($stmt)){
-                    // Set parameters
-                        $param_username = trim($_POST["user_name"]);
-                            if($param_username == $row['artiste_name']){
-                                $username_err = "This user_name is already taken.";
-                            } else{
-                            $uName = trim($_POST["user_name"]);
-                            }
+                    $user_name = trim($_POST['user_name']);
+                    $query = 'SELECT artiste_name FROM members WHERE artiste_name = "'.$user_name.'" UNION SELECT artiste_name FROM tmp_member WHERE artiste_name = "'.$user_name.'"';
+                    $stmt = mysqli_query($dbc,$query);
+                    
+                    if($stmt && mysqli_num_rows($stmt) > 0){
+                        $username_err = "This user_name is already taken.";
+                    }
+                    else{
+                        $uName = $user_name;
                     }
                     if(empty($password_err) && empty($confirm_password_err)){
                         // Validate password
@@ -65,11 +64,14 @@
                                 $confirm_password_err = 'Password did not match.';
                             }else{
                                 $param_password = password_hash($pWord, PASSWORD_DEFAULT); // Creates a password hash
-                                $query = "INSERT INTO members (artiste_id,artiste_name,password) VALUES (NULL,?,?)";
+                                $query = "INSERT INTO tmp_member (id,artiste_name,password,tmp_reg_time) VALUES (NULL,?,?,NOW())";
                                 $stmt = mysqli_prepare($dbc, $query);
-                                mysqli_stmt_bind_param($stmt, "ss",$uName,$param_password);
+                                mysqli_stmt_bind_param($stmt,'ss',$uName,$param_password);
+
                                 mysqli_stmt_execute($stmt);
+
                                 mysqli_stmt_close($stmt);
+
                             }
                         }
                     }
@@ -102,18 +104,19 @@
                     </form>';
                 ?>
                     <div id="pay">
-                        <form method="POST" action="test_pay.php?name=<?php echo $uName;?>">
+                        <form method="POST" action="https://voguepay.com/pay/">
                             Please proceed to pay.
-                            <input type="hidden" name="v_merchant_id" value="3828-0054426" />
+                            <input type="hidden" name="v_merchant_id" value="demo" />
                             <input type="hidden" name="memo" value="payment for promotional song upload" />
-                            <input type="hidden" name="success_url" value="<?php echo $_SERVER['SERVER_NAME']; ?>/member_create.php?pay=yes&username=<?php echo $uName; ?>" />
-                            <input type="hidden" name="fail_url" value="<?php echo $_SERVER['SERVER_NAME']; ?>/member_create.php?pay=no" />
+                            <input type="hidden" name="success_url" value="http://www.gospelmusichotspot.com/member_create.php?p=yes&u=<?php echo $uName ; ?>" />
+                            <input type="hidden" name="fail_url" value="http://www.gospelmusichotspot.com/member_create.php?pay=no" />
+							<input type="hidden" name="notify_url" value="http://www.gospelmusichotspot.com/member_create.php?p=yes&u=<?php echo $uName ; ?>" />
                             <input type="hidden" name="cur" value="NGN" />
                             <input type="hidden" name="item_1" value="upload" />
                             <input type="hidden" name="developer_code" value="599a05bc1e8d3" />
                             <input type="hidden" name="total" value="10000" />
                             <input type="hidden" name="description_1" value="" /><br />
-                            <input type="submit" value="pay" alt="PAY WITH YOUR CREDIT/DEBIT CARD" />
+                            <input type="image" src="https://voguepay.com/images/buttons/make_payment_blue.png" alt="PAY WITH YOUR CREDIT/DEBIT CARD" />
                         </form>
                         <i class="fa fa-cc-discover" ></i><i class="fa fa-cc-visa"></i><i class="fa fa-cc-mastercard"></i><i class="fa fa-cc-paypal"></i></br>
                     </div>

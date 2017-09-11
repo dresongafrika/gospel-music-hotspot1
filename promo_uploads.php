@@ -17,17 +17,23 @@
         echo fread($read_bio,filesize("$bio_target$aNAME.txt"));
         fclose($read_bio);
         echo '</div>';
-        echo '</br><img class="promo_cover" src="' . $row["album_art"] . '"alt="' . $row["song_title"] . ' by ' . $row["artiste_name"] . '" /></img>';
+        echo '</br><img class="promo_cover" src="' . $row["album_art"] . '" alt="' . $row["song_title"] . ' by ' . $row["artiste_name"] . '" /></img>';
         echo '</br><audio controls="controls" autoplay="autoplay">
                     <source src="' . $row["song_link"] . '" type="audio/mp3"/>
                     Your browser does not support the audio element.
                 </audio></br>';
+        echo '<form action="force_download_promo.php" method="post">
+                <input type="hidden" name="file_name" value="'.$row["mp3_name"].'"/>
+                <input type="submit" value="DOWNLOAD NOW"/>
+              </form>';
         echo '<h3>Lyrics</h3></br>';
         echo '<div id="lyric_cont">';
         $read_lyrics = fopen("$lyric_target$sNAME by $aNAME.txt", "r");
         echo fread($read_lyrics,filesize("$lyric_target$sNAME by $aNAME.txt"));
         fclose($read_lyrics);
         echo '</div>';
+
+ echo'       <div class="fb-share-button" data-href="http://www.gospelmusichotspot.com/member_uploads.php?redirect='.$aNAME.'" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.gospelmusichotspot.com%2Fmember.php%3Fredirect%3Djaphet&amp;src=sdkpreparse">Share</a></div>';
     }
     ?>
 </section>
